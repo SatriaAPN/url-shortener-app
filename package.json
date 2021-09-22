@@ -1,0 +1,8 @@
+{
+  "name": "url-shortener",
+  "version": "1.0.0",
+  "description": "fullstack web application for shortening url",
+  "main": "server.js",
+  "author": "Satria Aluh Perwira Nusa",
+  "license": "MIT"
+}
