@@ -1,20 +1,26 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors');
 const app = express();
+const path = require('path');
 
 // Basic Configuration
 const port = process.env.PORT || 3000;
 
+// Parser Middleware
 app.use(express.json({ extended: false }));
 app.use(express.urlencoded({ extended: false }));
 
-app.use(cors());
+// Set Static File
+app.use(express.static(path.join(__dirname, '../../views/public/asset/css')));
+app.use('/asset', express.static(path.join(__dirname, '../../views/public/asset')));
 
-app.use('/public', express.static(`${process.cwd()}/public`));
+// Import the Router
+app.use(require('./routers'));
 
-app.use(require('./routers.js'));
+// Initialize the Database
+require('../config/database');
 
-app.listen(port, function() {
+// Start the Server Listening
+app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
